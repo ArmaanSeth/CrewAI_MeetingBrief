@@ -32,8 +32,6 @@ def main():
     crew=Crew(
         agents=[research_agent, industry_analysis_agent, meeting_strategy_agent, summary_and_briefing_agent],
         tasks=[research_task, industry_analysis_task, meeting_strategy_task, summary_and_briefing_task],
-        # verbose=True,
-        # process=Process.sequential,
     )
     result=crew.kickoff()
     print(result)

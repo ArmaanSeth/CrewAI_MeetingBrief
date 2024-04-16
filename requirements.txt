@@ -3,7 +3,4 @@ exa_py==1.0.7
 python-dotenv==1.0.1
 crewai==0.11.0
 langsmith
-langchain_google_genai
-pydash 
-pillow 
-pydantic
+langchain-groq

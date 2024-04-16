@@ -4,11 +4,15 @@ from tools import ExaSearchToolset
 from langchain_google_genai import ChatGoogleGenerativeAI
 import os
 from dotenv import load_dotenv
-
-load_dotenv()
-gemini=ChatGoogleGenerativeAI(model='gemini-pro', google_api_key=os.environ.get("GOOGLE_API_KEY"), verbose=True, temperature=0.9)
+from langchain_groq import ChatGroq
+# load_dotenv()
+# gemini=
 
 class MeetingPrepAgents():
+    def __init__(self):
+        # self.llm=ChatGoogleGenerativeAI(model='gemini-pro', google_api_key=os.environ.get("GOOGLE_API_KEY"), verbose=True)
+        self.llm=ChatGroq(api_key=os.environ.get("GROQ_API_KEY"),model="mixtral-8x7b-32768",verbose=True)
+        self.maxiter=3
     def research_agent(self):
         return Agent(
             role="Research Specialist",
@@ -19,7 +23,8 @@ class MeetingPrepAgents():
                         about the individuals and entities participating in the meeting. Your insights
                         will lay the groundwork for strategic meeting preparation."""),
             verbose=True,
-            llm=gemini
+            llm=self.llm,
+            max_iter=self.maxiter
         )
     
     def industry_analysis_agent(self):
@@ -32,7 +37,8 @@ class MeetingPrepAgents():
                     challenges facing the industry, and potential opportunities that
                     could be leveraged during the meeting for strategic advantage."""),
             verbose=True,
-            llm=gemini
+            llm=self.llm,
+            max_iter=self.maxiter
         )
 
     def meeting_strategy_agent(self):
@@ -44,7 +50,8 @@ class MeetingPrepAgents():
                     talking points, insightful questions, and strategic angles
                     to ensure the meeting's objectives are achieved."""),
             verbose=True,
-            llm=gemini
+            llm=self.llm,
+            max_iter=self.maxiter
         )
 
     def summary_and_briefing_agent(self):
@@ -55,5 +62,6 @@ class MeetingPrepAgents():
                     As the Briefing Coordinator, your role is to consolidate the research,
                     analysis, and strategic insights."""),
             verbose=True,
-            llm=gemini
+            llm=self.llm,
+            max_iter=self.maxiter
         )
